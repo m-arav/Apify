@@ -1,0 +1,28 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1 class="title" >Documents</h1>
+    <div class="columns">
+      <% @documents.each do |document| %>
+        <div class="column">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                <%= document.name %>
+              </p>
+            </header>
+            <footer class="card-footer">
+              <%= link_to 'Show', document, class: "card-footer-item"%>
+              <%= link_to 'Delete', document, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-footer-item"  %>
+            </footer>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <br>
+
+  <%= link_to 'New Document', new_document_path, class: "button is-link" %>
+</div>
+
+
+

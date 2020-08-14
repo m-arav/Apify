@@ -1,0 +1,31 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @document.name %>
+  </p>
+
+  <%= link_to 'Spreadsheet', rails_blob_path(@document.spreadsheet, disposition: "attachment") %>
+  <div>
+    <pre>
+      <code class="json-section" data-json='<%= @document.spreadsheet_json%>' >
+      </code>
+    </pre>
+  </div>
+  <div>
+    <%= link_to 'Edit', edit_document_path(@document), class: "button is-black" %>
+    <%= link_to 'Back', documents_path, class: "button is-dark" %>
+  </div>
+</div>
+
+<script>
+  const load = () => {
+    let target = document.querySelector('.json-section');
+    let jsonString = target.dataset.json;
+    let json = JSON.parse(jsonString);
+    let prettyprint = JSON.stringify(json, null, 2);
+    target.innerHTML = prettyprint;
+  }
+  window.onload = load;
+</script>
